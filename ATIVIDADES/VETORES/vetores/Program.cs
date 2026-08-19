@@ -1,37 +1,22 @@
-﻿Console.WriteLine("Hello, World!");
+using System.Globalization;
 
+string[] months = new string[12];
 
-
-// é possivel declarar o vetor e
-// ja definir e atribuir
-
-int[] number2 = 
-    new int[] {100, 200, 300};
-
-int[] number3 = 
-    {1000, 2000, 3000, 4000};
-
-//Percorrendo um vetor e adicionando
-// Valores dinamicamente
-
-Console.WriteLine("Informe o tamanho do vetor de inteiros:");
-
-int size = Convert.ToInt32(
-    Console.ReadLine());
-int[] myArray = new int[size];
-int total = 0; //Acumulador
-int counter = 0;
-for(int i =0; i< myArray.Length; i++)
+for (int i = 1; i <= 12; i++)
 {
-    Console.WriteLine(
-    "Digite Para [" + i + "]: "
-    );
-    myArray[i] = Convert.ToInt32(
-    Console.ReadLine()
-    );
-    total += myArray[i];
-    counter++;
-}
-Console.WriteLine("Totalizador = " + total);
+    DateTime firstDay =
+        new DateTime(DateTime.Now.Year, i, 1);
 
-Console.WriteLine("Contagem = " + counter);
+    DateTime lastDayMonthBefore =
+        firstDay.AddDays(-1);
+
+    string monthName =
+        firstDay.ToString("MMMM", CultureInfo.CreateSpecificCulture("pt-BR"));
+
+    months[i - 1] = monthName;
+}
+
+foreach (string monthName in months)
+{
+    Console.WriteLine($"---> {monthName}");
+}
